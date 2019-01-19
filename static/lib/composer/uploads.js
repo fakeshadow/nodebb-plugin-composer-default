@@ -1,6 +1,7 @@
 'use strict';
 
 /* globals define, utils, config, app */
+const url = 'http://localhost:4567'
 
 define('composer/uploads', [
 	'composer/preview',
@@ -261,6 +262,9 @@ define('composer/uploads', [
 				}
 				var current = textarea.val();
 				var re = new RegExp(escapeRegExp(filename) + "]\\([^)]+\\)", 'g');
+				if (isImage) {
+					text = url + text;
+				}
 				textarea.val(current.replace(re, (newFilename || filename) + '](' + text + ')'));
 
 				$(window).trigger('action:composer.uploadUpdate', {
